@@ -35,14 +35,8 @@ def calculate_antinode(one: tuple, two: tuple, to_borders: bool = False) -> list
         print_pink('normal diagonal')
         left, right = ((y1 - abs(y_diff), x1 - abs(x_diff)), (y2 + abs(y_diff), x2 + abs(x_diff)))
         if to_borders:
-            if check_antinode_fits_borders(left):
-                go_left, go_right = left, left
-            elif check_antinode_fits_borders(right):
-                go_left, go_right = right, right
-            else:
-                return []
-            while check_antinode_fits_borders(go_left):
-                print(f'left is correct: {go_left}')
+            while check_antinode_fits_borders(left):
+                print(f'left is correct: {left}')
                 res.append(left)
                 left = (left[0] - abs(y_diff), left[1] - abs(x_diff))
             while check_antinode_fits_borders(right):
@@ -88,5 +82,6 @@ for k, v in antennas_cords.items():
         new_atinodes = list(filter(check_antinode_fits_borders, new_atinodes))
         print('filtered', len(new_atinodes), new_atinodes)
         final2.update(new_atinodes)
+
 
 print_pink(f"*** puzzle 2: {len(final2)} ***")
