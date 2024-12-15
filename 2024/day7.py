@@ -1,4 +1,4 @@
-from itertools import combinations_with_replacement, product, permutations, combinations
+from itertools import product
 
 from helpers import print_pink
 
