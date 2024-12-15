@@ -71,7 +71,6 @@ def check_loop_exists(mx: list, new_obst: Union[list, tuple], start_pos: Union[l
 
         # check borders
         if new_i >= height or new_i < 0 or new_j >= width or new_j < 0:
-            # print_matrix(mx)
             return False
 
         # step forward if possible
@@ -88,15 +87,9 @@ def check_loop_exists(mx: list, new_obst: Union[list, tuple], start_pos: Union[l
             turns.append(position_tuple)
             turns_count.setdefault(position_tuple, 0)
             turns_count[position_tuple] += 1
-            # print(turns)
-            # cur_turn_count = turns.count(position)
-            # print(cur_turn_count)
             if turns_count[position_tuple] >= 2:
                 if turns[-1] != turns[-2]:
-                    # prev_turn_count = turns.count(turns[-2])
-                    # print(prev_turn_count)
                     if turns_count[turns[-2]] >= 2:
-                        # print_matrix(mx)
                         return True
             current_dir = (current_dir + 1) % 4
 
