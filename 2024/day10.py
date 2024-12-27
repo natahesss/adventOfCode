@@ -2,7 +2,7 @@ from typing import Tuple
 
 from helpers import print_pink, print_green, print_yellow, print_blue
 
-with open('inputs/day.txt') as inf:
+with open('inputs/day10.txt') as inf:
     topographic_map = [list(map(int, list(line.strip()))) for line in inf.readlines()]
 
 
@@ -20,11 +20,9 @@ def find_path(cur_path: Tuple[tuple], history: set, full_path: bool = False):
 
     if cur_num == 9:  # peak reached
         if full_path:
-            print_green(f'path found: {cur_path}')
-            history.add(tuple(cur_path))
-            print(history)
+            history.add(tuple(cur_path))  # count not only peak location, but full unique path
         else:
-            history.add((y, x))
+            history.add((y, x))  # count only peak location
         return cur_path, history
 
     cross = False
@@ -48,13 +46,12 @@ def find_path(cur_path: Tuple[tuple], history: set, full_path: bool = False):
             cur_path.append(next_steps.pop())
             y, x = cur_path[-1]
             cur_num = topographic_map[y][x]
+
             if cur_num == 9:  # peak reached
                 if full_path:
-                    print_green(f'path found: {cur_path}')
-                    history.add(tuple(cur_path))
-                    print(history)
+                    history.add(tuple(cur_path))  # count not only peak location, but full unique path
                 else:
-                    history.add((y, x))
+                    history.add((y, x))  # count only peak location
                 return cur_path, history
 
         # crossroad - more than 1 possible further ways
@@ -65,7 +62,7 @@ def find_path(cur_path: Tuple[tuple], history: set, full_path: bool = False):
                 new_path.append(ns)
 
                 # calling the function recursively for each of the possible ways
-                find_path(tuple(new_path), history)
+                find_path(tuple(new_path), history, full_path=full_path)
 
     return cur_path, history
 
@@ -75,11 +72,10 @@ s2 = 0
 for i in range(height):
     for j in range(width):
         if topographic_map[i][j] == 0:
-            # _, history = find_path(((i, j), ), set())
-            # s += len(history)
+            _, history = find_path(((i, j), ), set())
+            s += len(history)
 
             _, history2 = find_path(((i, j), ), set(), full_path=True)
-            print(history2)
             s2 += len(history2)
 
 
