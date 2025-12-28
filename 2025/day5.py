@@ -43,4 +43,4 @@ ans2 = 0
 for item in fresh_ranges:
     ans2 += item[1] - item[0] + 1
 
-print_pink(f'*** puzzle 1: {ans2} ***')
+print_pink(f'*** puzzle 2: {ans2} ***')

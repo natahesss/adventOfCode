@@ -42,4 +42,4 @@ for i, action in enumerate(actions):
     ans2 += final_calc(cur_lst, action)
 
 print_pink(f'*** puzzle 1: {ans1} ***')
-print_pink(f'*** puzzle 1: {ans2} ***')
+print_pink(f'*** puzzle 2: {ans2} ***')
